@@ -1,0 +1,36 @@
+.control-panel {
+	/* For Chrome and Safari */
+	background-image: -webkit-linear-gradient(top, #d4d4d4, #ececec);
+	/* For old Fx (3.6 to 15) */
+	background-image: -moz-linear-gradient(top, #d4d4d4, #ececec);
+	/* For pre-releases of IE 10*/
+	background-image: -ms-linear-gradient(top, #d4d4d4, #ececec);
+	/* For old Opera (11.1 to 12.0) */
+	background-image: -o-linear-gradient(top, #d4d4d4, #ececec);
+	/* Standard syntax; must be last */
+	background-image: linear-gradient(to bottom, #d4d4d4, #ececec);
+	width: 100%;
+	padding: 5px;
+	text-align: center;
+}
+
+.control-panel button {
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #009aff;
+	font-weight: bold;
+	width: 100px;
+	color: #ffffff;
+	/* For Chrome and Safari */
+	background-image: -webkit-linear-gradient(top, #009aff, #6bc4ff);
+	/* For old Fx (3.6 to 15) */
+	background-image: -moz-linear-gradient(top, #009aff, #6bc4ff);
+	/* For pre-releases of IE 10*/
+	background-image: -ms-linear-gradient(top, #009aff, #6bc4ff);
+	/* For old Opera (11.1 to 12.0) */
+	background-image: -o-linear-gradient(top, #009aff, #6bc4ff);
+	/* Standard syntax; must be last */
+	background-image: linear-gradient(to bottom, #009aff, #6bc4ff);
+}

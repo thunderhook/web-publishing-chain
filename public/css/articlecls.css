@@ -1,0 +1,851 @@
+/**
+ * articlecls.css
+ *
+ * Copyright (c), Wannes Meert, 2012.
+ *
+ * wmarticle by Wannes Meert is licensed under a Creative Commons Attribution
+ * 3.0 Unported License.
+ */
+
+/** NORMALIZE ***************************************************************/
+
+@import url("normalize.css");
+
+/** GENERAL LAYOUT **********************************************************/
+
+body {
+	font-family: Georgia, serif;
+	/*font-family:"Times New Roman",Georgia,Serif;*/
+	font-size: 11pt;
+	line-height: 1.5em; /* should be 1.5 font-size */
+	color: #333; /* only for web */
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	/* Headers should be closer to their content than the previous part. */
+	margin-top: 1.5em;
+	margin-bottom: .5em;
+	color: #333; /* In case header is wrapped in link */
+	line-height: 1.25em; /* should be 1.5 font-size */
+}
+
+h1 a, h2 a, h3 a, h4 a {
+	color: #333;
+}
+
+h1 {
+	font-size: 200%;
+}
+
+h2 {
+	font-size: 150%;
+}
+
+h3, h4 {
+	font-size: 125%;
+}
+
+p {
+	margin: 1ex 0 0 0;
+	-webkit-hyphens: auto;
+	-webkit-hyphenate-character: '-';
+	-webkit-locale: 'en';
+	-moz-hyphens: auto;
+	text-align: justify;
+	/* The minimum number of lines that must be left at the bottom of a page */
+	orphans: 5;
+	/* The minimum number of lines that muse be left at the top of a page */
+	widows: 5;
+}
+
+p.center {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #104a84;
+}
+
+a:after {
+	/*content: " (" attr(href) ")";*/
+}
+
+strong, b {
+	font-weight: bolder;
+}
+
+abbr {
+	cursor: help;
+}
+
+/* Lists */
+
+ul, ol, dl {
+	margin: .5em 0;
+	padding: 0 0 0 1.5em;
+	display: block;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+dl {
+	padding: 0;
+}
+
+dl dt {
+	font-weight: bold;
+}
+
+dl dd {
+	margin: 0 0 0 1.5em;
+}
+
+/* Smaller space between paragraphs in definition */
+dl dd p {
+	margin: .5em 0 0 0;
+}
+
+/* No spacing around embedded lists */
+li > ul, li > ol {
+	margin: 0;
+	padding: 0 0 0 2em;
+}
+
+li {
+	margin: .2em 0 0 0;
+}
+
+/* Tables */
+
+table {
+	margin: 1em auto;
+	text-align: left;
+	width: auto;
+	max-width: 100%;
+}
+
+table td, table th {
+	margin: 0;
+	padding: .2em .5em;
+	vertical-align: baseline;
+	text-align: left;
+}
+
+table.left {
+	margin: 0;
+}
+
+table.left th,
+table.left td {
+	padding-left: 0;
+}
+
+table.withleader td:first-child {
+	max-width: 20em;
+	overflow-x: hidden;
+	padding-left: 0;
+	text-overflow: clip;
+}
+
+table.withleader td:first-child:before {
+	/* http://www.w3.org/Style/Examples/007/leaders */
+	color: #b3b3b3;
+	float: left;
+	width: 0;
+	white-space: nowrap;
+	content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+}
+
+table.withleader td {
+	padding-left: 1ex;
+}
+
+table.withprintleader td:first-child::after {
+	content: leader(dotted);
+}
+
+/* Code */
+
+code,
+tt {
+  background-color: #f8f8f8;
+  border: 1px solid #dedede;
+  font-size: 13px;
+  padding: 1px 5px;
+
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px;
+	margin: 1ex 0;
+	text-align: left; 
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+
+/* Quotes */
+
+blockquote {
+	border-left: 3px #cccccc  solid;
+	padding-left: 1em;
+}
+
+blockquote footer {
+	color: #999999;
+}
+
+blockquote footer:before {
+	content: "— ";
+}
+
+/* Aside box */
+
+aside {
+	width: 300px;
+	float: right;
+	margin: .5em 1em;
+	padding: .5em 1em;
+	/*border: 1px #cccccc solid;*/
+	border-left: 3px #cccccc  solid;
+	font: italic bold #ff0000 ;
+}
+
+/* Footer */
+
+article > footer {
+	font-size: .8em;
+	color: #cccccc;
+	width: 100%;
+	margin-top: 3em;
+}
+
+/* Address */
+
+address {
+	font-style: normal;
+	padding: 0 0 0 1em;
+	margin: 0 0 0 2em;
+}
+
+/** HEADER ******************************************************************/
+
+body > article > header {
+	/*page: blank;*/
+}
+
+body > article > header > hgroup,
+body > article > header > hgroup > p {
+	text-align: center;
+}
+body > article > header > hgroup {
+	margin-bottom: 2em;
+}
+
+.authors .name {
+	margin: 0;
+}
+.authors .name:before {
+	content: ", ";
+}
+.authors .name:first-child {
+	margin: 0;
+}
+.authors .name:first-child:before {
+	content: "";
+}
+
+/** COLUMNS *****************************************************************/
+
+body.twocolumns article {
+	column-count         : 2;
+	-moz-column-count    : 2;
+	-webkit-column-count : 2;
+	column-gap         : 2em;
+	-moz-column-gap    : 2em;
+	-webkit-column-gap : 2em;
+}
+
+body.twocolumns > article > header {
+	column-span         : all;
+	-moz-column-span    : all;
+	-webkit-column-span : all;
+}
+
+/** ABSTRACT ****************************************************************/
+
+#abstract {
+	display: block;
+	padding: 0 3em;
+}
+
+/** ADDRESS *****************************************************************/
+
+.vcard {
+	margin:  0 0 0 2em;
+	padding: 0 0 0 1em;
+}
+
+.vcard .org {
+	font-style: italic;
+}
+
+.vcard .postal-code {
+	display: inline-block;
+	padding: 0 1ex 0 0;
+}
+
+.vcard .locality {
+	display: inline-block;
+}
+
+.vcard .email {
+	display: block;
+}
+
+.vcard .url {
+	display: block;
+}
+
+/** NUMBERING SECTIONS ******************************************************/
+
+/*
+ * To use nested tags, the headers should be nested wich is not garuanteed.
+ * And event then, the code underneath failes.
+ */
+
+/*body {*/
+	/*counter-reset:section figure table listing;*/
+/*}*/
+
+/*section {*/
+	/*counter-increment: section;*/
+/*}*/
+
+/*section:before {*/
+	/*content: "->section=" counters(section, ".") ". " "<-";*/
+/*}*/
+
+/*h1::before, h2::before, h3::before {*/
+	/*content: counters(section, ".") ". ";*/
+/*}*/
+
+body {
+	counter-reset:headerone headertwo appendix figure table listing;
+	/* string-set and string() are not yet supported in safari */
+	/*string-set: sectionstr "";*/ 
+}
+
+h1:before {
+	/*content: counter(headerone) " ";*/
+	counter-increment: headerone;
+}
+
+h1 {
+	counter-reset: headertwo;
+}
+
+h2:before {
+	counter-increment: headertwo;
+	content: counter(headertwo) ". ";
+	/*string-set: sectionstr content();*/
+}
+
+h2.notoc:before,
+h2.nonumber:before {
+	counter-increment: headertwo 0;
+	content: "";
+	/*string-set: sectionstr content();*/
+}
+
+h2.appendix:before {
+	counter-increment: appendix;
+	content: "A" counter(appendix) ". ";
+	/*string-set: sectionstr content();*/
+}
+
+h2 {
+	counter-reset: headerthree;
+}
+
+h3:before {
+	counter-increment: headerthree;
+	/*content: string(sectionstr) counter(headerthree) ". ";*/
+	content: counter(headertwo) "." counter(headerthree) ". ";
+}
+
+h3.notoc:before,
+h3.nonumber:before {
+	counter-increment: headerthree 0;
+	content: "";
+	/*string-set: sectionstr content();*/
+}
+
+/* Temporary solution as long as Safari does not support string-set and 
+ * string(). This requires all header to be tagged with the appendix class */
+h3.appendix:before {
+	content: "A" counter(appendix) "." counter(headerthree) ". ";
+}
+
+/* References */
+
+a.h2ref::after {
+	content: " Section " target-counter(attr(href, url), headertwo);
+}
+
+a.h3ref::after {
+	content: " Section " target-counter(attr(href, url), headertwo) "." target-counter(attr(href, url), headerthree);
+}
+
+a.appref::after {
+	content: " Appendix " target-counter(attr(href, url), appendix);
+}
+
+/** TOC */
+
+#toc>ol {
+	counter-reset: tocheadertwo tocappendix;
+	/*list-style-type: none;*/
+}
+
+#toc li {
+	display: block
+	/*list-style-type: none;*/
+}
+
+body.prince #toc li a::after {
+	content: leader(dotted) " " target-counter(attr(href, url), page);
+}
+
+#toc>ol>li:before {
+	/*content: counters(item, ".") ".  ";*/
+	counter-increment: tocheadertwo;
+	content: counter(tocheadertwo) ". ";
+}
+
+#toc>ol>li.nonumber:before {
+	counter-increment: tocheadertwo 0;
+	content: "";
+}
+
+#toc>ol>li.appendix:before {
+	counter-increment: tocappendix;
+	content: "A" counter(tocappendix) ". ";
+}
+
+#toc>ol>li {
+	counter-reset: tocheaderthree;
+}
+
+#toc>ol>li>ol>li:before {
+	counter-increment: tocheaderthree;
+	content: counter(tocheadertwo) "." counter(tocheaderthree) ". ";
+}
+
+#toc>ol>li.appendix>ol>li:before {
+	content: "A" counter(tocappendix) "." counter(tocheaderthree) ". ";
+}
+
+#toc>ol>li>ol>li>ol>li {
+	margin-left: 3ex; /* Make up for no section numbers */
+}
+
+.toclink {
+	/*display: inline-block;*/
+}
+
+:target {
+	/* Yellow fading technique: */
+	/* http://snook.ca/archives/html_and_css/yellow-fade-technique-css-animations */
+	-webkit-animation: target-fade 3s 1;
+	-moz-animation:    target-fade 3s 1;
+	/*background-color: #ffffd8;*/
+}
+
+@-webkit-keyframes target-fade {
+    0%   { background-color: rgba(254,254,215,1); }
+    100% { background-color: rgba(254,254,215,0); }
+}
+
+@-moz-keyframes target-fade {
+    0%   { background-color: rgba(254,254,215,1); }
+    100% { background-color: rgba(254,254,215,0); }
+}
+
+/** TOC live search */
+
+#tocsearchneedle {
+	font-size: 75%;
+	border: 1px solid #b3b3b3;
+	margin: .5em 0 0 2em;
+	-webkit-border-radius: 1em;
+	-moz-broder-radius: 1em;
+}
+
+/** FLOATS ******************************************************************/
+
+/**
+ * Floats should be created with <figure>.
+ *
+ * Adaptations for floating tables and listing are foreseen by figure classes
+ * .table and .listing.
+ *
+ * http://www.w3.org/TR/html5/tabular-data.html
+ */
+
+
+/* 
+ * Initialization of counters happens in the body tag (see above).
+ */
+
+figure {
+	margin: 1em 0;
+	display: block;
+	counter-increment: figure;
+	text-align: center;
+}
+
+figure.span {
+	/*-moz-column-span: all;*/
+	/*-webkit-column-span: all;*/
+	/*float: left;*/
+	/*position: absolute;*/
+}
+
+figure.top {
+	float: top;
+}
+
+figure.bottom {
+	float: bottom;
+}
+
+figure.table {
+	counter-increment: table;
+}
+
+figure.listing {
+	counter-increment: listing;
+}
+
+figure img {
+}
+
+figure table {
+}
+
+figure pre { /* For listings */
+	margin-bottom: 0;
+}
+
+figure figcaption {
+	text-align:center;
+	font-size: 0.9em;
+}
+
+figure figcaption::before {
+	font-weight: bold;
+}
+
+figure figcaption::before {
+	content: "Figure " counter(figure) ": ";
+}
+
+figure.table figcaption::before {
+	content: "Table " counter(table) ": ";
+}
+
+figure.listing figcaption::before {
+	content: "Listing " counter(listing) ": ";
+}
+
+/*a.figref::after {*/
+a.figref {
+	content: " Figure " target-counter(attr(href), figure);
+}
+
+a.tabref {
+	content: " Table " target-counter(attr(href), table);
+}
+
+a.lisref {
+	content: " Listing " target-counter(attr(href), listing);
+}
+
+/** FOOTNOTES ***************************************************************/
+
+sup {
+	color: #444;
+}
+
+.footnote {
+	float: footnote;
+	font-size: .9em;
+	/*content: target-pull(attr(href, url));*/
+}
+
+.inline-footnote {
+	border-left: 1px solid #CCC;
+	color: #888;
+	display: block;
+	float: right;
+	font-size: .9em;
+	line-height: 149%;
+	margin-left: .9em;
+	margin-right: -5px;
+	margin-top: 4px;
+	padding-left: .8em;
+	position: relative;
+	width: 300px;
+}
+
+@media print {
+	@page {
+		@footnote { 
+			float: bottom;
+			column-span: all;
+			width: 100%;
+		}
+	}
+}
+
+/** PRINT PAGES *************************************************************/
+
+@media screen {
+	body {
+		margin: 0 10% 5em 10%;
+	}
+
+	body.a4 {
+		width: 210mm;
+	}
+}
+
+.plain {
+	page: blank;
+}
+
+@media print {
+
+
+	body {
+		margin: 0;
+	}
+
+	@page {
+		/*size: 210mm 297mm;*/
+		size: A4;
+		margin: 25mm 16mm;
+		padding: 0;
+		/*margin: 25mm;*/
+		marks: crop cropss; 
+		/*border: 1px solid red;*/
+	}
+
+	div.chapter, div.appendix {
+		page-break-after: always;
+	}
+
+	/*article {*/
+		/*page-break-before: always;*/
+	/*}*/
+
+	h1, h2, h3 {
+		page-break-after: avoid;
+		orphans: 3;
+		widows: 3;
+	}
+
+	h1 {
+		string-set: title content();
+	}
+
+	body.noheaders h1 {
+		string-set: title '';
+	}
+
+	h2:first {
+		page-break-before: avoid;
+	}
+
+	h2 {
+		string-set: header content();
+	}
+
+	h2.appendix {
+		page-break-before: always;
+	}
+
+	body.noheaders h2 {
+		string-set: title '';
+	}
+
+	ul {
+		page-break-inside: avoid;
+	}
+
+	tr {
+		page-break-inside: avoid;
+	}
+
+	li {
+		orphans: 2;
+		widows: 2;
+	}
+
+	/*dt {*/
+		/*page-break-after: avoid;*/
+	/*}*/
+
+	@page:first {
+		@top {content: normal;}
+		@top-right {content: normal;}
+		@top-left {content: normal;}
+	}
+
+	@page :left {
+		@top-left {
+			content: string(title);
+			color: #666666;
+			font-size: 80%;
+		}
+	}
+
+	@page :left {
+		@bottom-left {
+			content: counter(page);
+		}
+	}
+
+	@page :right {
+		@top-right {
+			content: string(header, first);
+			color: #666666;
+			font-size: 80%;
+		}
+	}
+
+	@page :right {
+		@bottom-right {
+			content: counter(page);
+		}
+	}
+
+	@page front-matter :left {
+		@bottom-left {
+			content: counter(page, lower-roman);
+		}
+	}
+
+	@page blank :left {
+		@top-left {content: normal;}
+		@bottom-left {content: normal;}
+	}
+	@page blank :right {
+		@top-right {content: normal;}
+		@bottom-right {content: normal;}
+	}
+
+	img {
+		page-break-inside: avoid; /* Do not split image over multiple pages. */
+		max-width: 100% !important;
+	}
+
+	/**
+	 * Avoid figure environments to be split over multiple pages.
+	 */
+	figure,
+	figure img,
+	figure table {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	/*abbr[title]:after {*/
+		/*content: " (" attr(title) ")";*/
+	/*}*/
+
+	abbr {
+		text-decoration: none;
+	}
+
+	.page-break {
+		page-break-before:always;
+	}
+}
+
+/** GLOSSARY ****************************************************************/
+
+abbr.hidden {
+	display: none;
+}
+
+abbr.noglossary {
+
+}
+
+/** CITEPROC-JS *************************************************************/
+
+#bibliography {
+}
+
+#bibliography .csl-bib-body {
+  margin-left: 2em;
+  position: relative;
+  text-indent: -2em;
+}
+
+#bibliography .csl-left-margin {
+	position: absolute;
+	left: 0;
+}
+
+#bibliography .csl-right-inline {
+	margin-left: 2em;
+}
+
+/** BOOKMARKS ***************************************************************/
+
+h1 { bookmark-level: 1 }
+h2 { bookmark-level: 2 }
+h3 { bookmark-level: 3 }
+h4 { bookmark-level: 4 }
+h5 { bookmark-level: 5 }
+h6 { bookmark-level: 6 }
+
+/** MEETING MINUTES *********************************************************/
+
+.at {
+	background-color: #ffff66;
+}

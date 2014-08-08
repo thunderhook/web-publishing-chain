@@ -1,3 +1,4 @@
 /node_modules
 /start.bat
 /stop.bat
+npm-debug.log

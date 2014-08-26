@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Article.cls</title>
-	<meta charset="utf-8" />
-	<meta name="author" content="Wannes Meert" />
-	<meta name="dcterms.issued" content="2012-02-21" />
-	<meta name="keywords" content="html5,css3,print,latex" />
-	<meta name="description" content="HTML5/CSS3 template to be used for print media" />
-	<link rel="author" href="mailto:wannes.meert@cs.kuleuven.be" />
-	<link rel="license" href="http://wannesm.be/articlecls/license/" />
-
-	<% include scripts.html %>
-
+<head><% include scripts.html %>
 </head>
 
 <script type="text/javascript">
-        Aloha.ready( function() {
-            $('section').aloha();
-        });
-    </script>
-<body>
-	<% include controlpanel.html %>
-	<% include expose.html %>
+	Aloha.settings = {
+		_pluginBaseUrlByName : '.',
+		contentHandler : {},
+		locale : 'de',
+		sidebar : {
+			disabled : true
+		}
+	};
+	Aloha.ready(function() {
+		$('section').aloha();
+	});
+</script>
+<body><% include controlpanel.html %> <% include expose.html %>
 </body>
 </html>

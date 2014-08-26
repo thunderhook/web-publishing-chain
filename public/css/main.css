@@ -1,23 +1,31 @@
-.control-panel {
-	/* For Chrome and Safari */
-	background-image: -webkit-linear-gradient(top, #d4d4d4, #ececec);
-	/* For old Fx (3.6 to 15) */
-	background-image: -moz-linear-gradient(top, #d4d4d4, #ececec);
-	/* For pre-releases of IE 10*/
-	background-image: -ms-linear-gradient(top, #d4d4d4, #ececec);
-	/* For old Opera (11.1 to 12.0) */
-	background-image: -o-linear-gradient(top, #d4d4d4, #ececec);
-	/* Standard syntax; must be last */
-	background-image: linear-gradient(to bottom, #d4d4d4, #ececec);
-	width: 100%;
-	height: 30px;
-	padding: 5px;
-	text-align: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	border-bottom: 1px solid black;
+@media screen {
+	.control-panel {
+		/* For Chrome and Safari */
+		background-image: -webkit-linear-gradient(top, #d4d4d4, #ececec);
+		/* For old Fx (3.6 to 15) */
+		background-image: -moz-linear-gradient(top, #d4d4d4, #ececec);
+		/* For pre-releases of IE 10*/
+		background-image: -ms-linear-gradient(top, #d4d4d4, #ececec);
+		/* For old Opera (11.1 to 12.0) */
+		background-image: -o-linear-gradient(top, #d4d4d4, #ececec);
+		/* Standard syntax; must be last */
+		background-image: linear-gradient(to bottom, #d4d4d4, #ececec);
+		width: 100%;
+		height: 30px;
+		padding: 5px;
+		text-align: center;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 999;
+		border-bottom: 1px solid black;
+	}
+}
+
+@media print {
+	.control-panel {
+		visibility: hidden;
+	}
 }
 
 .control-panel button {
@@ -39,4 +47,14 @@
 	background-image: -o-linear-gradient(top, #009aff, #6bc4ff);
 	/* Standard syntax; must be last */
 	background-image: linear-gradient(to bottom, #009aff, #6bc4ff);
+}
+
+.signature {
+	border-bottom: 1px solid #000000;
+}
+
+@media print {
+	section {
+		page-break-after: always;
+	}
 }

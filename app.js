@@ -21,5 +21,9 @@ app.get('/expose/edit', function(req, res, next){
 	res.render('./expose_edit.html');
 });
 
+app.get('/articlecls/edit', function(req, res, next){
+	res.render('./articlecls_edit.html');
+});
+
 app.listen(3000);
 console.log('Express started on port 3000');

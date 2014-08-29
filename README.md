@@ -11,8 +11,9 @@ TODO
     - [ ] eventually disable editable-highlighting (seems buggy with big sections)?
  - [x] Check existing Aloha plugins and load the one needed.
  - [ ] Write own Aloha Plugins
-     - [ ] Footnote Plugin
-     - [ ] Cite Plugin (check existing aloha plugin first)
+     - [x] Footnote Plugin
+         - [ ] multiple JS-reloadings generate multiple footnotes: rewrite article.cls?
+     - [ ] Cite Plugin (check existing aloha-cite-plugin first)
      - [ ] ...
  - [ ] Implement header functionality in control panel (paper title, author, ...)
      - [ ] block plugin? 

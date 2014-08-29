@@ -613,7 +613,8 @@ sup {
 }
 
 .inline-footnote {
-	border-left: 1px solid #CCC;
+	border: none !important;
+	border-left: 1px solid #CCC !important;
 	color: #888;
 	display: block;
 	float: right;

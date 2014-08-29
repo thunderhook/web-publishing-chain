@@ -20,6 +20,12 @@
 		z-index: 999;
 		border-bottom: 1px solid black;
 	}
+	
+	.footnote {
+		color: #666666;
+		border: 1px dashed #666666;
+		padding: 2px;
+	}
 }
 
 @media print {

@@ -2,7 +2,7 @@ web-publishing-chain
 ====================
 
 This is an attempt to use [Aloha Editor](http://aloha-editor.org/) for the HTML/CSS representation 
-with [Article.cls](http://wannesm.be/articlecls/) for single source publishing
+with [Article.cls](http://wannesm.be/articlecls/) for single source publishing.
 
 TODO
 --------------------
@@ -13,10 +13,11 @@ TODO
  - [ ] Write own Aloha Plugins
      - [x] Footnote Plugin
          - [ ] multiple JS-reloadings generate multiple footnotes: rewrite article.cls?
-     - [ ] Cite Plugin (check existing aloha-cite-plugin first)
+     - [ ] Cite Plugin
      - [ ] ...
- - [ ] Implement header functionality in control panel (paper title, author, ...)
-     - [ ] block plugin? 
+ - [x] Implement header functionality in control panel (paper title, author, ...)
+     - [x] block plugin? 
+     - [ ] fix author block plugin (only one author possible at the moment)
 
 
 

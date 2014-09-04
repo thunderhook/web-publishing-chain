@@ -6,8 +6,16 @@
 <script type="text/javascript">
 	Aloha.ready(function() {
 		$('section').aloha();
+		Aloha.Sidebar.right.open();
 	});
+
 </script>
-<body><% include controlpanel.html %> <% include expose.html %>
+<body>
+	<% include controlpanel.html %> <% include expose.html %>
+
+	<div class="ui-widget">
+		<button onclick="addSth();" name="test">Test</button>
+		<label for="tags">Tags: </label> <input id="tags">
+	</div>
 </body>
 </html>

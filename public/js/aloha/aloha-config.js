@@ -9,31 +9,35 @@
 			'debug' : false,
 			'deprecated' : true
 		},
-		sidebar : {
-			disabled : true
-		},
+		// sidebar : {
+		// disabled : true
+		// },
 		errorhandling : false,
 		ribbon : false,
 		locale : 'de',
 		plugins : {
-			format : {
-				// all elements with no specific configuration get this
-				// configuration
-				config : [ 'b', 'i', 'p', 'sub', 'sup', 'del', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat' ],
-				editables : {
-				// no formatting allowed for title
-				// '#top-text' : []
-				}
-			}
-		},
-		toolbar : {
-			tabs : [ {
-				label : 'Article.cls',
-				showOn : {
-					scope : 'Aloha.continuoustext'
+			link : {
+				target : "_blank",
+				objectTypeFilter : [ "language/link" ]
+			},
+			block : {
+				// TODO set jQuery selector, that it only searches for elements
+				// in <hgroup>
+				defaults : {
+					'hgroup div span.name' : {
+						'aloha-block-type' : 'HeaderAuthorBlock'
+					},
+					'hgroup time' : {
+						'aloha-block-type' : 'HeaderDateBlock'
+					},
+					'hgroup h1' : {
+						'aloha-block-type' : 'HeaderTitleBlock'
+					}
 				},
-				components : [ [ 'footnote' ] ]
-			} ]
+				dragdrop : false,
+				rootTags : [ 'span', 'div', 'time', 'h1' ]
+			}
 		}
+
 	};
 })(window);

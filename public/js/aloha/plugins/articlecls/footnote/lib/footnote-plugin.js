@@ -5,7 +5,6 @@ define([
         'ui/ui',
         'ui/button',
         'util/dom',
-        'PubSub',
         'i18n!footnote/nls/i18n',
         'i18n!aloha/nls/i18n',
         'css!footnote/css/footnote.css'
@@ -16,7 +15,6 @@ define([
 		Ui,
 		Button,
 		Dom,
-		PubSub,
 		i18n,
 		i18nCore) {
 	"use strict";
@@ -25,54 +23,10 @@ define([
 
 	return Plugin.create(pluginNamespace, {
 		/**
-		 * Default configuration allows links everywhere
-		 */
-		config : [ 'a' ],
-		/**
-		 * Internal update interval reference to work around an ExtJS bug
-		 */
-		hrefUpdateInt : null,
-		/**
-		 * HotKeys used for special actions
-		 */
-		hotKey : {
-			insertFootnote : i18n.t('insertFootnote', 'ctrl+q')
-		},
-		/**
 		 * Initializes the plugin.
 		 */
 		init : function() {
 			this.createButtons();
-			// this.enableHotkey(this);
-		},
-
-		enableHotkey : function(plugin) {
-			PubSub.sub('aloha.editable.created', function(message) {
-				var editable = message.editable;
-				// enable hotkey for inserting links
-				editable.obj.bind('keydown.aloha-link', plugin.hotKey.insertFootnote, function() {
-					plugin.formatFootnote();
-					return false;
-				});
-			});
-		},
-
-		nsSel : function() {
-			var stringBuilder = [], prefix = pluginNamespace;
-			jQuery.each(arguments, function() {
-				stringBuilder.push('.' + (this == '' ? prefix : prefix + '-' + this));
-			});
-			return jQuery.trim(stringBuilder.join(' '));
-		},
-
-		// Creates string with this component's namepsace prefixed the each
-		// classname
-		nsClass : function() {
-			var stringBuilder = [], prefix = pluginNamespace;
-			jQuery.each(arguments, function() {
-				stringBuilder.push(this == '' ? prefix : prefix + '-' + this);
-			});
-			return jQuery.trim(stringBuilder.join(' '));
 		},
 
 		/**

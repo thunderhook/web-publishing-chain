@@ -9,11 +9,7 @@
 			'debug' : false,
 			'deprecated' : true
 		},
-		// sidebar : {
-		// disabled : true
-		// },
 		errorhandling : false,
-		ribbon : false,
 		locale : 'de',
 		plugins : {
 			link : {
@@ -21,8 +17,6 @@
 				objectTypeFilter : [ "language/link" ]
 			},
 			block : {
-				// TODO set jQuery selector, that it only searches for elements
-				// in <hgroup>
 				defaults : {
 					'hgroup div span.name' : {
 						'aloha-block-type' : 'HeaderAuthorBlock'
@@ -32,11 +26,23 @@
 					},
 					'hgroup h1' : {
 						'aloha-block-type' : 'HeaderTitleBlock'
+					},
+					'.mathjax-input' : {
+						'aloha-block-type' : 'MathJaxBlock'
 					}
 				},
 				dragdrop : false,
 				rootTags : [ 'span', 'div', 'time', 'h1' ]
 			}
+		},
+		toolbar : {
+			tabs : [ {
+				label : 'Article.cls',
+				showOn : {
+					scope : 'Aloha.continuoustext'
+				},
+				components : [ [ 'footnote' ] ]
+			} ]
 		}
 
 	};

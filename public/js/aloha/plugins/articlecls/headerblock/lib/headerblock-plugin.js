@@ -6,11 +6,16 @@ define([
     'block/editormanager',
     'block/editor',
     'headerblock/block'
-], function(Plugin, PubSub, Aloha, BlockManager, EditorManager, editor,  block) {
+], function(Plugin, PubSub, Aloha, BlockManager, EditorManager, Editor,  Block) {
     "use strict";
     
-
-    var DateEditor = editor.AbstractFormElementEditor.extend({
+    var MathJaxEditor = Editor.AbstractFormElementEditor.extend({
+    	formInputElementDefinition : '<textarea placeholder="Your Math Functions" />'
+    	// TODO extend Editor for Save Button? At the moment value changes when focus lost
+	});
+    
+    
+    var DateEditor = Editor.AbstractFormElementEditor.extend({
     	formInputElementDefinition : '<input type="text" placeholder="yyyy-MM-dd"/>',
 		getValue: function () {
 			var date = this._$formInputElement.val();
@@ -27,11 +32,14 @@ define([
 
     return Plugin.create('headerblock', {
 		init : function() {
-			BlockManager.registerBlockType('HeaderAuthorBlock', block.HeaderAuthorBlock);
-			BlockManager.registerBlockType('HeaderDateBlock', block.HeaderDateBlock);
-			BlockManager.registerBlockType('HeaderTitleBlock', block.HeaderTitleBlock);
+			BlockManager.registerBlockType('HeaderAuthorBlock', Block.HeaderAuthorBlock);
+			BlockManager.registerBlockType('HeaderDateBlock', 	Block.HeaderDateBlock);
+			BlockManager.registerBlockType('HeaderTitleBlock', 	Block.HeaderTitleBlock);
+			BlockManager.registerBlockType('MathJaxBlock', 		Block.MathJaxBlock);
+			
 
-			EditorManager.register('date', DateEditor);
+			EditorManager.register('date', 		DateEditor);
+			EditorManager.register('mathjax', 	MathJaxEditor);
 		},
 	});
 });

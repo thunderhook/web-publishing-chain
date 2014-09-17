@@ -72,8 +72,8 @@ define([
 		 * Find Meta Tags for authors and set them
 		 */
 		update : function($element, postProcessFn) {
-			// TODO only works with one author! Fix with finding the correct meta tag with old content
-			$('meta[name=author]').attr('content', this.attr('author'));
+			var currentAuthor = $('meta[name=author]').get($('span[class~="aloha-block-HeaderAuthorBlock"]').index($element));
+			$(currentAuthor).attr('content', this.attr('author'));
 			$element.html(this.attr('author'));
 			postProcessFn();
 		}

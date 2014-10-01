@@ -25,24 +25,41 @@ app.get('/expose/edit', function(req, res, next) {
 	res.render('./expose_edit.html');
 });
 
-app.post('/expose/edit/save', function(req, res, next) {
+app.post('/expose/edit/save/html', function(req, res, next) {
+	var ts = Math.round((new Date()).getTime() / 1000);
+	var filepath = './public/html_preview/' + ts;
+	generateHtmlFromRequest(req, filepath);
+	res.end('{"filename" : "' + ts + '.html"}');
+});
+
+app.post('/expose/edit/save/pdf', function(req, res, next) {
 	var ts = Math.round((new Date()).getTime() / 1000);
 	var filepath = './output/' + ts;
+	generateHtmlFromRequest(req, filepath);
+	// generate PDF
+	prince().binary('prince.exe').inputs(filepath + '.html').output(filepath + '.pdf').execute().then(function() {
+		console.log('PDF generated at: ' + filepath + '.pdf');
+		res.end('{"filename" : "' + ts + '.pdf"}');
+	}, function(error) {
+		console.log('ERROR: ', error);
+	});
+
+});
+
+var generateHtmlFromRequest = function(req, filepath) {
 	fs.writeFile(filepath + '.html', req.body.htmlContent, function(err) {
 		if (err)
 			throw err;
 		console.log('HTML saved at: ' + filepath + '.html');
-		prince().binary('prince.exe').inputs(filepath + '.html').output(filepath + '.pdf').execute().then(function() {
-			console.log('PDF generated at: ' + filepath + '.pdf');
-			res.end('{"filename" : "' + ts + '.pdf"}');
-		}, function(error) {
-			console.log('ERROR: ', error);
-		})
 	});
+}
+
+app.get('/pdf/:file(*)', function(req, res, next) {
+	res.download('./output/' + req.params.file);
 });
 
-app.get('/download/:file(*)', function(req, res, next) {
-	res.download('./output/' + req.params.file);
+app.get('/html/:file(*)', function(req, res, next) {
+	res.render('../public/html_preview/' + req.params.file);
 });
 
 app.get('/articlecls/edit', function(req, res, next) {

@@ -1,18 +1,22 @@
-uploadToServer = function() {
+generatePdf = function() {
 	var data = {};
 	var html = document.documentElement.innerHTML;
-	data.htmlContent = clearHtmlFile(html);
+	data.htmlContent = clearHtmlFile(html, true);
 	$.ajax({
 		type : 'POST',
 		data : JSON.stringify(data),
 		contentType : "application/json",
-		// TODO relative link
-		url : 'http://localhost:3000/expose/edit/save',
+		url : '/expose/edit/save/pdf',
 		success : function(data, textStatus, jqXHR) {
 			var result = JSON.parse(jqXHR.responseText);
-			// TODO For multiple uploads take an existing iframe and reuse it
-			// TODO After Downloading, Aloha does not work!? Check
-			document.body.innerHTML += "<iframe src='http://localhost:3000/download/" + result.filename + "' style='display: none;' ></iframe>"
+
+			$('#download_iframe').remove();
+			$('<iframe />', {
+				id : 'download_iframe',
+				src : 'http://localhost:3000/pdf/' + result.filename,
+				style : 'display: none'
+			}).appendTo('body');
+
 		},
 		error : {
 			// TODO error handling
@@ -20,9 +24,28 @@ uploadToServer = function() {
 	});
 };
 
+generateHtml = function() {
+	var data = {};
+	var html = document.documentElement.innerHTML;
+	data.htmlContent = clearHtmlFile(html, false);
+	$.ajax({
+		type : 'POST',
+		data : JSON.stringify(data),
+		contentType : "application/json",
+		url : '/expose/edit/save/html',
+		success : function(data, textStatus, jqXHR) {
+			var result = JSON.parse(jqXHR.responseText);
 
-clearHtmlFile = function(html) {
+			window.open('/html/' + result.filename, 'HTML preview', '');
 
+		},
+		error : {
+			// TODO error handling
+		}
+	});
+};
+
+clearHtmlFile = function(html, relinkCssForPdf) {
 	// Remove all script tags
 	var SCRIPT_REGEX = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
 	while (SCRIPT_REGEX.test(html)) {
@@ -31,13 +54,23 @@ clearHtmlFile = function(html) {
 
 	// Relink all relative CSS includes
 	var dom = $('<html/>').append($(html));
-	dom.find("link").each(function() {
-		var href = $(this).attr('href');
-		// only relative links and stylesheets
-		if (!/^https?:\/\//i.test(href) && $(this).attr('rel') == 'stylesheet') {
-			$(this).attr('href', href.replace('/css', '/public/css'));
-		}
-	});
+	if (relinkCssForPdf) {
+		dom.find("link").each(function() {
+			var href = $(this).attr('href');
+			// only relative links and stylesheets
+			if (!/^https?:\/\//i.test(href) && $(this).attr('rel') == 'stylesheet') {
+				$(this).attr('href', href.replace('/css', '/public/css'));
+			}
+		});
+	}
+
+	
+	// workaround, since mahalo() does not work. set contenteditable to false.
+	dom.find('section').attr('contenteditable', 'false');
+	// this does not work: dom.find('section').mahalo();
+
+	// Remove download iframe
+	dom.find('#download_iframe').remove();
 
 	// Remove Control Panel
 	dom.find(".control-panel").remove();
@@ -48,6 +81,11 @@ clearHtmlFile = function(html) {
 	dom.find("#aloha-ui-context").remove();
 	dom.find(".aloha-toolbar").remove();
 	dom.find(".aloha-character-picker-overlay").remove();
+	
+	dom.find("[class^='aloha-']").removeClass (function (index, css) {
+	    return (css.match (/(^|\s)aloha-\S+/g) || []).join(' ');
+	});
+
 	// this is for empty div helpers from aloha without css-class
 	dom.find("div:empty:not([class])").remove();
 

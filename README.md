@@ -10,27 +10,16 @@ Extended Aloha Functionality is:
 
  - Footnote Plugin
  - Edit Header
- - Edit Authors (adding not implemented)
+ - Edit Authors (add and delete not implemented)
  - Edit Creation Date
-
-TODO
---------------------
-
- - [x] Fix behaviour of Alohas .mahalo() function. Doesn't clear Aloha classes.
-    - [ ] eventually disable editable-highlighting (seems buggy with big sections)?
- - [x] Check existing Aloha plugins and load the one needed.
- - [x] Write own Aloha Plugins
-     - [x] Footnote Plugin
- - [x] Implement header functionality in control panel (paper title, author, ...)
-     - [x] block plugin? 
-     - [x] fix author block plugin (only one author possible at the moment)
-
 
 Future work
 --------------------
 
   - Provide elements for adding and removing specific blocks (authors, title, subtitle, ...)
   - Clear the temporary folders (/public/html_preview and /output)
+  - eventually disable editable-highlighting (seems buggy with big sections)?
+  - Provide save options for cloud services as Google Drive or DropBox
  
 
 Installation and Usage

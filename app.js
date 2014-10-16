@@ -17,22 +17,22 @@ app.get('/', function(req, res, next) {
 	res.render('./index.html');
 });
 
-app.get('/expose', function(req, res, next) {
-	res.render('./expose.html');
+app.get('/:file', function(req, res, next) {
+	res.render('./' + req.params.file + '/' + req.params.file + '.html');
 });
 
-app.get('/expose/edit', function(req, res, next) {
-	res.render('./expose_edit.html');
+app.get('/edit/:file', function(req, res, next) {
+	res.render('./' + req.params.file + '/' + req.params.file + '_edit.html');
 });
 
-app.post('/expose/edit/save/html', function(req, res, next) {
+var save = function(req, res, next) {
 	var ts = Math.round((new Date()).getTime() / 1000);
 	var filepath = './public/html_preview/' + ts;
 	generateHtmlFromRequest(req, filepath);
 	res.end('{"filename" : "' + ts + '.html"}');
-});
+}
 
-app.post('/expose/edit/save/pdf', function(req, res, next) {
+var printPdf = function(req, res, next) {
 	var ts = Math.round((new Date()).getTime() / 1000);
 	var filepath = './output/' + ts;
 	generateHtmlFromRequest(req, filepath);
@@ -44,7 +44,7 @@ app.post('/expose/edit/save/pdf', function(req, res, next) {
 		console.log('ERROR: ', error);
 	});
 
-});
+}
 
 var generateHtmlFromRequest = function(req, filepath) {
 	fs.writeFile(filepath + '.html', req.body.htmlContent, function(err) {
@@ -54,16 +54,16 @@ var generateHtmlFromRequest = function(req, filepath) {
 	});
 }
 
+app.post('/edit/:file/save/html', save);
+
+app.post('/edit/:file/save/pdf', printPdf);
+
 app.get('/pdf/:file(*)', function(req, res, next) {
 	res.download('./output/' + req.params.file);
 });
 
 app.get('/html/:file(*)', function(req, res, next) {
 	res.render('../public/html_preview/' + req.params.file);
-});
-
-app.get('/articlecls/edit', function(req, res, next) {
-	res.render('./articlecls_edit.html');
 });
 
 app.listen(3000);

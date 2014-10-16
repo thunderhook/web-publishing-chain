@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><% include scripts.html %>
+<head>
+	<% include ../scripts.html %>
 </head>
 
 <script type="text/javascript">
 	Aloha.ready(function() {
 		$('section').aloha();
-		Aloha.Sidebar.right.open();
 	});
 
 </script>
 <body>
-	<% include controlpanel.html %> <% include expose.html %>
+	<% include ../controlpanel.html %>
+	<% include expose.html %>
 </body>
 </html>

@@ -6,7 +6,7 @@ generatePdf = function() {
 		type : 'POST',
 		data : JSON.stringify(data),
 		contentType : "application/json",
-		url : '/expose/edit/save/pdf',
+		url : window.location.pathname + '/save/pdf',
 		success : function(data, textStatus, jqXHR) {
 			var result = JSON.parse(jqXHR.responseText);
 
@@ -32,7 +32,7 @@ generateHtml = function() {
 		type : 'POST',
 		data : JSON.stringify(data),
 		contentType : "application/json",
-		url : '/expose/edit/save/html',
+		url : window.location.pathname +'/save/html',
 		success : function(data, textStatus, jqXHR) {
 			var result = JSON.parse(jqXHR.responseText);
 
